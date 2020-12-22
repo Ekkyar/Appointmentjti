@@ -22,7 +22,7 @@
       <label for="exampleEmail1">List Dosen TIF</label><br>
         <select class="custom-select mb-4 w-50" id="id_role">
           <?php foreach ($tif as $dostif) : ?>
-            <option value="#">
+            <option value="<?php echo $dostif['id_user']; ?>">
               <?php echo $dostif['name']; ?>
             </option>
           <?php endforeach; ?>
@@ -34,7 +34,7 @@
     <label for="exampleEmail1">List Dosen TKK</label><br>
         <select class="custom-select mb-4 w-50" id="id_role">
           <?php foreach ($tkk as $dostkk) : ?>
-            <option value="#">
+            <option value="<?php echo $dostkk['id_user']; ?>">
               <?php echo $dostkk['name']; ?>
             </option>
           <?php endforeach; ?>
