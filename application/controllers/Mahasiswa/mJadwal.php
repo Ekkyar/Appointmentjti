@@ -47,13 +47,16 @@ class mJadwal extends CI_Controller
     {
         $event_data = $this->Model_FullCalendar->fetch_all_event_by_student($this->session->userdata('id_user'));
         foreach ($event_data->result_array() as $row) {
+            // var_dump($row); die;
             $getInfo = $this->db->get_where('tb_user', ['id_user' => $row['id_user']])->row_array();
+            $getDosen = $this->db->get_where('tb_user', ['id_user' => $row['id_dosen']])->row_array();
 
             $idEvent = $row['id'];
             $startEvent = $row['start_event'];
             $endEvent = $row['end_event'];
             $content = $row['title'];
             $user = $getInfo['name'];
+            $dosen = $getDosen['name'];
             $status = $row['status'];
 
             $msg = "$content oleh $user";
@@ -72,11 +75,54 @@ class mJadwal extends CI_Controller
                 'start' => $startEvent,
                 'end' => $endEvent,
                 'user' => $user,
+                'dosen' => $dosen,
                 'status' => $row['status'],
                 'message' => $row['message'],
                 'color' => $color
             );
         }
+        echo json_encode($data);
+    }
+
+    function loadByDosen($id_dosen)
+    {
+        $event_data = $this->Model_FullCalendar->fetch_all_event_by_dosen($id_dosen);
+        foreach ($event_data->result_array() as $row) {
+            $getInfo = $this->db->get_where('tb_user', ['id_user' => $row['id_user']])->row_array();
+            $getDosen = $this->db->get_where('tb_user', ['id_user' => $row['id_dosen']])->row_array();
+
+            $idEvent = $row['id'];
+            $startEvent = $row['start_event'];
+            $endEvent = $row['end_event'];
+            $content = $row['title'];
+            $user = $getInfo['name'];
+            $dosen = $getDosen['name'];
+            $status = $row['status'];
+
+            $msg = "$content oleh $user";
+
+            if($status === "waiting") {
+                $color = "blue";
+            } elseif($status === "accept") {
+                $color = "green";
+            } elseif($status === "reject") {
+                $color = "red";
+            }
+
+            $data[] = array(
+                'id' => $idEvent,
+                'title' => $content,
+                'start' => $startEvent,
+                'end' => $endEvent,
+                'user' => $user,
+                'dosen' => $dosen,
+                'status' => $row['status'],
+                'message' => $row['message'],
+                'color' => $color
+            );
+
+        }
+        // var_dump($event_data->result_array()); die;
         echo json_encode($data);
     }
 
@@ -91,6 +137,8 @@ class mJadwal extends CI_Controller
                 'id_dosen' => $this->input->post('dosen'),
                 'status' => 'waiting'
             );
+
+            // var_dump($data); die;
             $this->Model_FullCalendar->insert_event($data);
         }
     }
@@ -118,6 +166,7 @@ class mJadwal extends CI_Controller
     function delete()
     {
         if ($this->input->post('id')) {
+            // var_dump($this->input->post('id')); die;
             $this->Model_FullCalendar->delete_event($this->input->post('id'));
         }
     }
