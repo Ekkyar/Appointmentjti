@@ -45,7 +45,7 @@ class dRequest extends CI_Controller
         redirect('Dosen/dRequest');
     }
 
-    public function reject() {
+    public function reject(){
         $id = $this->uri->segment(4);
         $data = [
             'status' => 'reject'
