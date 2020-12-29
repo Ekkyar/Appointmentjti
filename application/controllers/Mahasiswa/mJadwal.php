@@ -27,7 +27,7 @@ class mJadwal extends CI_Controller
         //ambil data session login
         $data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['role'] = $this->db->get_where('tb_role', ['id_role' => $this->session->userdata('id_role')])->row_array();
-        
+
         $data['id_user_mahasiswa'] = $data['user']['id_user'];
         $data['id_prodi'] = $data['user']['id_prodi'];
 
@@ -61,12 +61,14 @@ class mJadwal extends CI_Controller
 
             $msg = "$content oleh $user";
 
-            if($status === "waiting") {
+            if ($status === "waiting") {
                 $color = "blue";
-            } elseif($status === "accept") {
+            } elseif ($status === "accept") {
                 $color = "green";
-            } elseif($status === "reject") {
+            } elseif ($status === "reject") {
                 $color = "red";
+            } elseif ($status === "busy") {
+                $color = "yellow";
             }
 
             $data[] = array(
@@ -101,12 +103,14 @@ class mJadwal extends CI_Controller
 
             $msg = "$content oleh $user";
 
-            if($status === "waiting") {
+            if ($status === "waiting") {
                 $color = "blue";
-            } elseif($status === "accept") {
+            } elseif ($status === "accept") {
                 $color = "green";
-            } elseif($status === "reject") {
+            } elseif ($status === "reject") {
                 $color = "red";
+            } elseif ($status === "busy") {
+                $color = "yellow";
             }
 
             $data[] = array(
@@ -120,7 +124,6 @@ class mJadwal extends CI_Controller
                 'message' => $row['message'],
                 'color' => $color
             );
-
         }
         // var_dump($event_data->result_array()); die;
         echo json_encode($data);
@@ -159,7 +162,6 @@ class mJadwal extends CI_Controller
     function updateStatus()
     {
         if ($this->input->post('id')) {
-            
         }
     }
 
