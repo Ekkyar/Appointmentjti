@@ -42,9 +42,7 @@
                                                     <img class="img-thumbnail" width="80px" src="<?= base_url('assets/img/profile/') . $mif['image'] ?>" alt="img">
                                                 </div>
                                             </td>
-                                            <td>
-                                                <a href="" class=" badge badge-success" data-toggle="modal" data-target="#lihatMahasiswa<?= $mif['id_user']; ?>">Chat</a>
-                                            </td>
+                                            
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -89,9 +87,7 @@
                                                     <img class="img-thumbnail" width="80px" src="<?= base_url('assets/img/profile/') . $mif['image'] ?>" alt="img">
                                                 </div>
                                             </td>
-                                            <td>
-                                               <a href="" class=" badge badge-success" data-toggle="modal" data-target="#lihatMahasiswa<?= $mif['id_user']; ?>">Chat</a>
-                                            </td>
+                                            
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -136,9 +132,7 @@
                                                     <img class="img-thumbnail" width="80px" src="<?= base_url('assets/img/profile/') . $mif['image'] ?>" alt="img">
                                                 </div>
                                             </td>
-                                            <td>
-                                               <a href="" class=" badge badge-success" data-toggle="modal" data-target="#lihatMahasiswa<?= $mif['id_user']; ?>">Chat</a>
-                                            </td>
+                                           
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
