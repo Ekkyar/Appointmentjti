@@ -49,18 +49,18 @@
                 </button>
             </div>
             <div class="modal-body">
-            <ul class="list-group">
-                <li class="list-group-item nama"></li>
-                <li class="list-group-item dosen-dituju"></li>
-                <li class="list-group-item kebutuhan"></li>
-                <li class="list-group-item status"></li>
-                <li class="list-group-item event-id"></li>
-            </ul>
-            <hr>
-            <div class="form-group">
-                <label for="inputPassword2">Message from Sender</label>
-                <textarea class="form-control message_report" rows="3" readonly></textarea>
-            </div>
+                <ul class="list-group">
+                    <li class="list-group-item nama"></li>
+                    <li class="list-group-item dosen-dituju"></li>
+                    <li class="list-group-item kebutuhan"></li>
+                    <li class="list-group-item status"></li>
+                    <li class="list-group-item event-id"></li>
+                </ul>
+                <hr>
+                <div class="form-group">
+                    <label for="inputPassword2">Message from Sender</label>
+                    <textarea class="form-control message_report" rows="3" readonly></textarea>
+                </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" onClick="deleteEvent()" type="button" data-dismiss="modal">Delete</button>
@@ -82,8 +82,7 @@
 <script src='https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.js'></script>
 <script>
-    function deleteEvent()
-    {
+    function deleteEvent() {
         var eventId = $('.event-id').text();
         $.ajax({
             url: "<?php echo base_url(); ?>mahasiswa/mjadwal/delete",
@@ -148,12 +147,12 @@
                             alert(data);
                         }
                     });
-                    
+
                 }
             },
             eventClick: function(event) {
-                jQuery.noConflict(); 
-                $('#eventModal').modal('show'); 
+                jQuery.noConflict();
+                $('#eventModal').modal('show');
                 $('.nama').text(`Nama Lengkap: ${event.user}`);
                 $('.dosen-dituju').text(`Nama Dosen: ${event.dosen == null ? 'semua dosen' : event.dosen}`);
                 $('.kebutuhan').text(`Kebutuhan: ${event.title}`);
@@ -161,7 +160,7 @@
                 $('.event-id').text(`${event.id}`);
                 $('.status_id').val(event.id);
                 $('.message_report').val(event.message);
-                
+
             }
         });
 
@@ -179,7 +178,7 @@
                 }
 
 
-                
+
                 calendar.fullCalendar('removeEventSources');
                 calendar.fullCalendar('addEventSource', events_new);
                 calendar.fullCalendar('refetchEvents');
@@ -200,7 +199,7 @@
                     type: "GET"
                 }
 
-                
+
                 calendar.fullCalendar('removeEventSources');
                 calendar.fullCalendar('addEventSource', events_new);
                 calendar.fullCalendar('refetchEvents');

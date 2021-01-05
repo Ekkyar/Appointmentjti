@@ -15,23 +15,23 @@
                 </tr>
             </thead>
             <tbody>
-            <?php
-            foreach ($mRequest as $data):
-                $id_user = $data['id_user'];
-                $query = $this->db->query("SELECT * FROM tb_user WHERE id_user = '$id_user'")->row_array();
-            ?>
-                <tr>
-                    <td><?= $query['name']; ?></td>
-                    <td><?= $query['nip/nim']; ?></td>
-                    <td><?= $data['title']; ?></td>
-                    <td><?= $data['start_event']; ?></td>
-                    <td>
-                        <a href="<?= base_url();?>dosen/drequest/accept/<?= $data['id']; ?>">Accept</a> |
-                        <a href="<?= base_url();?>dosen/drequest/reject/<?= $data['id']; ?>">Reject</a>
-                    </td>
-                </tr>
-            <?php
-            endforeach; ?>
+                <?php
+                foreach ($mRequest as $data) :
+                    $id_user = $data['id_user'];
+                    $query = $this->db->query("SELECT * FROM tb_user WHERE id_user = '$id_user'")->row_array();
+                ?>
+                    <tr>
+                        <td><?= $query['name']; ?></td>
+                        <td><?= $query['nip/nim']; ?></td>
+                        <td><?= $data['title']; ?></td>
+                        <td><?= $data['start_event']; ?></td>
+                        <td>
+                            <a href="<?= base_url(); ?>dosen/drequest/accept/<?= $data['id']; ?>">Accept</a> |
+                            <a href="<?= base_url(); ?>dosen/drequest/reject/<?= $data['id']; ?>">Reject</a>
+                        </td>
+                    </tr>
+                <?php
+                endforeach; ?>
             </tbody>
         </table>
 
